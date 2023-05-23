@@ -1,0 +1,17 @@
+{
+    "linter": {
+      "enabled": true,
+      "rules": {
+        "recommended": true
+      },
+      "ignore": ["./public/*", "./node_modules/*"]
+    },
+    "formatter":{
+      "formatWithErrors": false,
+      "indentStyle": "tab",
+      "indentSize": 2,
+      "lineWidth": 80,
+      "ignore": ["./public/*", "./node_modules/*"]
+    }
+  }
+  

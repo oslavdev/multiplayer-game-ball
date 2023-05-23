@@ -1,0 +1,75 @@
+#root {
+width: 100%;
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+canvas {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.App{
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.pt-20 {
+  padding-top: 20px;
+}
+
+input {
+  padding: 5px 10px;
+  font-size: 14px;
+  min-width: 250px;
+  transition: .3s;
+}
+
+.button {
+  background: #5195c2;
+  border: none;
+  padding: 7px 20px;
+  transition: .3s;
+}
+.inactive {
+  pointer-events: none;
+  cursor: initial;
+  background: #3b3b3b;
+}
+
+
+.ui-block {
+  position: fixed;
+  bottom: 30px;
+  right: 20px;
+  width: 350px;
+  pointer-events: none;
+}
+
+
+.ui-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.ui-type {
+  color: #5bb372;
+  margin-right: 5px;
+}
