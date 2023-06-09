@@ -67,18 +67,18 @@ export function Player(props: IPlayer) {
     
 		  const cameraPosition = new THREE.Vector3()
 		  cameraPosition.copy(bodyPosition)
-		//   cameraPosition.z += 2.25
-		//   cameraPosition.y += 0.65
+		  cameraPosition.z += 3.25
+		  cameraPosition.y += 2.35
   
 		  const cameraTarget = new THREE.Vector3()
 		  cameraTarget.copy(bodyPosition)
-		//   cameraTarget.y += 0.25
+		  cameraTarget.y += 0.25
   
 		  smoothedCameraPosition.lerp(cameraPosition, 5 * delta)
 		  smoothedCameraTarget.lerp(cameraTarget, 5 * delta)
   
-		//   state.camera.position.copy(smoothedCameraPosition)
-		  state.camera.lookAt(smoothedCameraTarget)
+		  state.camera.position.copy(smoothedCameraPosition)
+		  state.camera.lookAt(cameraTarget)
 	})
 
 	 return( 
