@@ -1,13 +1,9 @@
-import * as React from "react";
-import * as THREE from 'three'
-
-import { Float, Text } from "@react-three/drei";
 import { RigidBody, useRapier } from '@react-three/rapier'
-import { useEffect, useRef, useState } from 'react'
 
 import { Vector3 } from "three";
 import { useFrame } from '@react-three/fiber'
 import { useKeyboardControls } from '@react-three/drei'
+import { useRef } from 'react'
 
 interface IPlayer {
 	name: string
@@ -17,18 +13,15 @@ interface IPlayer {
 export function Guest(props: IPlayer) {
 
 	const body = useRef() as any
-    const [ subscribeKeys, getKeys ] = useKeyboardControls()
-	const { rapier, world } = useRapier()
-    const rapierWorld = world.raw()
-
+    
 	useFrame((state, delta) =>
     {
 	
         const impulse = { x: 0, y: 0, z: 0 }
         const torque = { x: 0, y: 0, z: 0 }
 
-        const impulseStrength = 0.6 * delta
-        const torqueStrength = 0.2 * delta
+        // const impulseStrength = 0.6 * delta
+        // const torqueStrength = 0.2 * delta
 
         body.current.applyImpulse(impulse)
         body.current.applyTorqueImpulse(torque)
