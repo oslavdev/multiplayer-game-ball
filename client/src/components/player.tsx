@@ -1,10 +1,8 @@
-import * as React from "react";
 import * as THREE from 'three'
 
-import { Float, Text } from "@react-three/drei";
-import { RigidBody, useRapier } from '@react-three/rapier'
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 
+import { RigidBody } from '@react-three/rapier'
 import { Vector3 } from "three";
 import { useFrame } from '@react-three/fiber'
 import { useKeyboardControls } from '@react-three/drei'
@@ -17,9 +15,8 @@ interface IPlayer {
 export function Player(props: IPlayer) {
 
 	const body = useRef() as any
-    const [ subscribeKeys, getKeys ] = useKeyboardControls()
-	const { rapier, world } = useRapier()
-    const rapierWorld = world.raw()
+    const [ _, getKeys ] = useKeyboardControls()
+
     const [ smoothedCameraPosition ] = useState(() => new THREE.Vector3(10, 10, 10))
     const [ smoothedCameraTarget ] = useState(() => new THREE.Vector3())
 
