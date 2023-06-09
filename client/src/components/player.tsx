@@ -1,10 +1,8 @@
-import * as React from "react";
 import * as THREE from 'three'
 
-import { Float, Text } from "@react-three/drei";
-import { RigidBody, useRapier } from '@react-three/rapier'
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 
+import { RigidBody } from '@react-three/rapier'
 import { Vector3 } from "three";
 import { useFrame } from '@react-three/fiber'
 import { useKeyboardControls } from '@react-three/drei'
@@ -17,15 +15,14 @@ interface IPlayer {
 export function Player(props: IPlayer) {
 
 	const body = useRef() as any
-    const [ subscribeKeys, getKeys ] = useKeyboardControls()
-	const { rapier, world } = useRapier()
-    const rapierWorld = world.raw()
+    const [ _, getKeys ] = useKeyboardControls()
+
     const [ smoothedCameraPosition ] = useState(() => new THREE.Vector3(10, 10, 10))
     const [ smoothedCameraTarget ] = useState(() => new THREE.Vector3())
 
 	useFrame((state, delta) =>
     {
-		const { forward, backward, leftward, rightward } = getKeys()
+		const { forward, backward, leftward, rightward, jump } = getKeys()
 
         const impulse = { x: 0, y: 0, z: 0 }
         const torque = { x: 0, y: 0, z: 0 }
@@ -57,6 +54,15 @@ export function Player(props: IPlayer) {
             torque.z += torqueStrength
         }
 
+        if(jump)
+        {
+    
+            if(body.current.translation()?.y <= 0.9){
+                impulse.y = 0.1
+            }
+           
+        }
+
         body.current.applyImpulse(impulse)
         body.current.applyTorqueImpulse(torque)
 
@@ -67,18 +73,18 @@ export function Player(props: IPlayer) {
     
 		  const cameraPosition = new THREE.Vector3()
 		  cameraPosition.copy(bodyPosition)
-		//   cameraPosition.z += 2.25
-		//   cameraPosition.y += 0.65
+		  cameraPosition.z += 3.25
+		  cameraPosition.y += 2.35
   
 		  const cameraTarget = new THREE.Vector3()
 		  cameraTarget.copy(bodyPosition)
-		//   cameraTarget.y += 0.25
+		  cameraTarget.y += 0.25
   
 		  smoothedCameraPosition.lerp(cameraPosition, 5 * delta)
 		  smoothedCameraTarget.lerp(cameraTarget, 5 * delta)
   
-		//   state.camera.position.copy(smoothedCameraPosition)
-		  state.camera.lookAt(smoothedCameraTarget)
+		  state.camera.position.copy(smoothedCameraPosition)
+		  state.camera.lookAt(cameraTarget)
 	})
 
 	 return( 

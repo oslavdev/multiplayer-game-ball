@@ -1,15 +1,13 @@
 import * as Types from '../types'
 
-import { Canvas, useFrame } from "@react-three/fiber";
 import { Debug, Physics } from "@react-three/rapier";
-import { Float, Text } from "@react-three/drei";
-import { Vector, Vector3 } from "three";
 
+import { Canvas } from "@react-three/fiber";
 import {Guest} from './guest'
 import { KeyboardControls } from "@react-three/drei";
 import { Level } from "./level/level";
 import {Player} from './player'
-import { useGameManager } from "../use-game-manager";
+import { Vector3 } from "three";
 
 interface IGameInfo {
 	info: Types.terminal[]
@@ -18,7 +16,7 @@ interface IGameInfo {
 function GameInfo(props: IGameInfo){
 	return(
 		<div className="ui-block">
-			{props.info.map((el, i) =>( 
+			{props.info.slice(0, 5).map((el, i) =>( 
 				<div key={i} className="ui-row">
 					<div className="ui-type">{el.author}</div>
 					<div>{el.text}</div>
