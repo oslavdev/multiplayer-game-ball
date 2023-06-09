@@ -22,7 +22,7 @@ export function Player(props: IPlayer) {
 
 	useFrame((state, delta) =>
     {
-		const { forward, backward, leftward, rightward } = getKeys()
+		const { forward, backward, leftward, rightward, jump } = getKeys()
 
         const impulse = { x: 0, y: 0, z: 0 }
         const torque = { x: 0, y: 0, z: 0 }
@@ -52,6 +52,15 @@ export function Player(props: IPlayer) {
         {
             impulse.x -= impulseStrength
             torque.z += torqueStrength
+        }
+
+        if(jump)
+        {
+    
+            if(body.current.translation()?.y <= 0.9){
+                impulse.y = 0.1
+            }
+           
         }
 
         body.current.applyImpulse(impulse)
