@@ -62,8 +62,8 @@ export default class MeetBallsGame  {
                         playersInTheRoom: currentRoom.getAllPlayers(),
                     })
 
-                     // update globally messages
-                     io.emit('message', { terminal: currentRoom.getAllMessages() })
+                    // update globally messages
+                    io.emit('message', { terminal: currentRoom.getAllMessages() })
                     
                     // Update information for all players globally
                     io.emit("updatePlayers", {
