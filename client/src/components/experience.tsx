@@ -34,7 +34,6 @@ interface Experience {
 }
 
 export default function Experience(props: Experience) {
-	
 
 	return (
 		<KeyboardControls
@@ -57,7 +56,7 @@ export default function Experience(props: Experience) {
 			>
 				<Physics>
 					<Player name={props.name} position={props.position} />
-					{props.manager.players?.map((player: any) =>(
+					{props.manager.players?.filter((pl: any) => pl.playerId !== props.manager.currentPlayer.playerId).map((player: any) =>(
 						<Guest key={player.playerId} name={player.name} position={player.position}  />
 					))}
 					<Level />

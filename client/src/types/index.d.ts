@@ -1,5 +1,7 @@
+import {Vector3 } from "@react-three/fiber";
+
 export type terminal = {
-	author: string
+	author: string 
 	text: string
 }
 
@@ -12,6 +14,13 @@ export type quaternion = {
 export type Player = {
 	playerId: string
 	playerName: string
-	position: number[]
+	position: any
 	quaternion: quaternion
+}
+
+export type game = {
+	ready: boolean
+	player: Player
+	players: Player[]
+	terminal: terminal[]
 }

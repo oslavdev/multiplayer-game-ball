@@ -1,8 +1,6 @@
-import { RigidBody, useRapier } from '@react-three/rapier'
-
+import { RigidBody } from '@react-three/rapier'
 import { Vector3 } from "three";
 import { useFrame } from '@react-three/fiber'
-import { useKeyboardControls } from '@react-three/drei'
 import { useRef } from 'react'
 
 interface IPlayer {
@@ -13,7 +11,7 @@ interface IPlayer {
 export function Guest(props: IPlayer) {
 
 	const body = useRef() as any
-    
+
 	useFrame((state, delta) =>
     {
 	
